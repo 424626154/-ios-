@@ -1,10 +1,16 @@
-[隔壁大叔IOS文档](https://github.com/424626154/-ios-)
-##### 单本转平台打包流程
-######1:修改bundle id 修改版本号 version 修改产品名称bundle name
+#隔壁大书ios文档
+[TOC]
+##打包流程
+###关于平台的打包流程</br>
+###关于单本转平台打包发布流程</br>
+#####1:修改bundle id 修改版本号 version 修改产品名称bundle name
+```
 ./targets/General/bundle id 
 ./targets/General/version
 ./targets/info/bundle name
-######2:修改资源文件
+```
+#####2:修改资源文件
+```
 每本的资源文件在single_pack下对应名称目录
 icon<br>
 home_page@2x.jpg 390 × 524<br>
@@ -20,13 +26,27 @@ share_icon.png<br>
 single
 singlebook_书籍ID
 style 样式文件夹全部删除后拷贝
-######3:修改配置文件
+```
+#####3:修改配置文件
+```
 ./ServerConfig.h 修改成官网地址
 ./SinleConfig.h 选择需要的相关属性
 ./AppSwitch.h isS2PConfig 单本转平台开关
-######4:修改微信ID
+```
+#####4:修改微信ID
+```
 targets/info/url types
-######5:选择对应的证书
+```
+#####5:选择对应的证书
+```
 debug版本
 release版本
 Product-Archive
+```
+###关于单本的打包流程</br>
+
+
+
+
+
+
