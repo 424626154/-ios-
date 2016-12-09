@@ -284,7 +284,7 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 <a href="#toc_0">隔壁大书ios文档</a>
 <ul>
 <li>
-<a href="#toc_1">打包流程</a>
+<a href="#toc_1">关于打包流程</a>
 <ul>
 <li>
 <a href="#toc_2">关于平台的打包流程</br></a>
@@ -307,23 +307,35 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 <a href="#toc_7">4:修改微信ID</a>
 </li>
 <li>
-<a href="#toc_8">5:选择对应的证书</a>
+<a href="#toc_8">6:选择ipa配置文件</a>
+</li>
+<li>
+<a href="#toc_9">6:选择对应的证书</a>
 </li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_9">关于单本的打包流程</br></a>
+<a href="#toc_10">关于单本的打包流程</br></a>
 </li>
 </ul>
+</li>
+<li>
+<a href="#toc_11">关于推送</a>
+</li>
+<li>
+<a href="#toc_12">关于内购</a>
+</li>
+<li>
+<a href="#toc_13">关于Identifiers 对应APP Name</a>
 </li>
 </ul>
 </li>
 </ul>
 
 
-<h2 id="toc_1">打包流程</h2>
+<h2 id="toc_1">关于打包流程</h2>
 
 <h3 id="toc_2">关于平台的打包流程</br></h3>
 
@@ -367,16 +379,126 @@ style 样式文件夹全部删除后拷贝
 <pre><code>targets/info/url types
 </code></pre>
 
-<h5 id="toc_8">5:选择对应的证书</h5>
+<h5 id="toc_8">6:选择ipa配置文件</h5>
+
+<pre><code>tab/rmbcharge_s2p.txt
+</code></pre>
+
+<p>例</p>
+
+<pre><code>{&quot;name&quot;:&quot;&quot;,&quot;activityId&quot;:0,&quot;cost&quot;:[{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP1&quot;,&quot;name&quot;:&quot;600馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,600馒头币&quot;,&quot;money&quot;:600,&quot;RMB&quot;:6,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP2&quot;,&quot;name&quot;:&quot;1200馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,1200馒头币&quot;,&quot;money&quot;:1200,&quot;RMB&quot;:12,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP3&quot;,&quot;name&quot;:&quot;3000馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,3000馒头币&quot;,&quot;money&quot;:3000,&quot;RMB&quot;:30,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP4&quot;,&quot;name&quot;:&quot;9800馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,9800馒头币&quot;,&quot;money&quot;:9800,&quot;RMB&quot;:98,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP5&quot;,&quot;name&quot;:&quot;61800馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,61800馒头币&quot;,&quot;money&quot;:61800,&quot;RMB&quot;:618,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP6&quot;,&quot;name&quot;:&quot;5000馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,5000馒头币&quot;,&quot;money&quot;:5000,&quot;RMB&quot;:50,&quot;reward&quot;:0}]}
+</code></pre>
+
+<h5 id="toc_9">6:选择对应的证书</h5>
 
 <pre><code>debug版本
 release版本
 Product-Archive
 </code></pre>
 
-<h3 id="toc_9">关于单本的打包流程</br></h3>
+<h3 id="toc_10">关于单本的打包流程</br></h3>
 
-<br><br><br><br>
+<h2 id="toc_11">关于推送</h2>
+
+<h2 id="toc_12">关于内购</h2>
+
+<p>debug环境中使用测试账号却未进入沙盒测试的解决<br/>
+<code><br/>
+删除TARGETS-Build Settings-Code Signing Entitlements<br/>
+</code><br/>
+内购IAP规则<br/>
+隔壁大书平台<br/>
+<code><br/>
+com.locojoy.wanshuIAP1 6 600馒头币 隔壁大书,600馒头币 <br/>
+com.locojoy.wanshuIAP2 12 1200馒头币 隔壁大书,1200馒头币 <br/>
+com.locojoy.wanshuIAP3 30 3000馒头币 隔壁大书,3000馒头币 <br/>
+com.locojoy.wanshuIAP4 98 9800馒头币 隔壁大书,9800馒头币 <br/>
+com.locojoy.wanshuIAP5 618 61800馒头币 隔壁大书,61800馒头币 <br/>
+com.locojoy.wanshuIAP6 50 5000馒头币 隔壁大书,5000馒头币 <br/>
+</code><br/>
+单本转平台规则<br/>
+<code><br/>
+Bundle ID+S2PIAP1 6 600馒头币 隔壁大书,600馒头币 <br/>
+Bundle ID+S2PIAP2 12 1200馒头币 隔壁大书,1200馒头币 <br/>
+Bundle ID+S2PIAP3 30 3000馒头币 隔壁大书,3000馒头币 <br/>
+Bundle ID+S2PIAP4 98 9800馒头币 隔壁大书,9800馒头币 <br/>
+Bundle ID+S2PIAP5 618 61800馒头币 隔壁大书,61800馒头币 <br/>
+Bundle ID+S2PIAP6 50 5000馒头币 隔壁大书,5000馒头币 <br/>
+</code></p>
+
+<h2 id="toc_13">关于Identifiers 对应APP Name</h2>
+
+<table>
+<thead>
+<tr>
+<th>APP Name</th>
+<th>Bundle ID</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>隔壁大书</td>
+<td>com.locojoy.wanshu</td>
+</tr>
+<tr>
+<td>梦境奇缘</td>
+<td>com.locojoy.book1mjqy</td>
+</tr>
+<tr>
+<td>请勿乱动</td>
+<td>com.locojoy.book1mjqy</td>
+</tr>
+<tr>
+<td>梦境奇缘</td>
+<td>com.locojoy.book1mjqy</td>
+</tr>
+<tr>
+<td>请勿乱动</td>
+<td>com.locojoy.book2qwld</td>
+</tr>
+<tr>
+<td>氏族崛起</td>
+<td>com.locojoy.book3szjq</td>
+</tr>
+<tr>
+<td>魔鬼的宠物</td>
+<td>com.locojoy.book4mgdcw</td>
+</tr>
+<tr>
+<td>守墓人</td>
+<td>com.locojoy.book5smr</td>
+</tr>
+<tr>
+<td>禁地逃生</td>
+<td>com.locojoy.book6jdts</td>
+</tr>
+<tr>
+<td>无字碑宫杀</td>
+<td>com.locojoy.book7wzbgs</td>
+</tr>
+<tr>
+<td>死亡派对</td>
+<td>com.locojoy.book8swpd</td>
+</tr>
+<tr>
+<td>末世求生手册</td>
+<td>com.locojoy.book9msqssc</td>
+</tr>
+<tr>
+<td>玄武纪</td>
+<td>com.locojoy.book10xwj</td>
+</tr>
+<tr>
+<td>尸体租赁合同</td>
+<td>com.locojoy.book11stzlht</td>
+</tr>
+<tr>
+<td>校园迷雾</td>
+<td>com.locojoy.book12xymw</td>
+</tr>
+</tbody>
+</table>
 
 </div></body>
 
