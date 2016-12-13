@@ -25,7 +25,7 @@ s2p_start_nor@3x.png<br>
 share_icon.png<br>
 single
 singlebook_书籍ID
-style 样式文件夹全部删除后拷贝
+s2pstyle 样式文件夹全部删除后拷贝
 ```
 #####3:修改配置文件
 ```
