@@ -98,6 +98,21 @@ APP Name |  Bundle ID
 玄武纪| com.locojoy.book10xwj
 尸体租赁合同 | com.locojoy.book11stzlht
 校园迷雾 | com.locojoy.book12xymw
+##关于版本管理
+###关于SVN目录
+```
+ios下目录分别为branches,tags,trunk.
+branches为阶段性release版本
+tags为阶段性发布版本
+trunk为日常开发版本
+```
+###如何打tags
+建议使用windos系统
+branches 合并
+比对工具:
+windos WinMerge
+1:将branches和trunk中的工程文件目录拖动到WinMerge  branches在左侧 trunk在右侧
+
 
 
 
