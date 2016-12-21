@@ -166,6 +166,7 @@ openssl pkcs12 -nocerts -out PushKey.pem -in Push.p12
 cat PushCert.pem PushKey.pem > ck.pem
 ```
 生成ck.pem文件
+
  ![](./资源文件/关于推送/009.tiff) 
 
 
@@ -264,10 +265,41 @@ p12文件和pem文件的区别
 
 还有：推送的开发证书有效期是4个月，发布证书是1年
 
-###推送感悟
+###阅读推送文档理解与实际操作
+
 阅读push服务器部分php和push证书部分的注意点之后也会遇到问题
-1. .cer证书为导出的证书,如果是使用其他合作的证书,请先将推送证书安装在本机然后导出文件而不是直接使用文件
-2. 生成证书后 测试项目有两个 Apns测试程序跟send.php  send.php使用正确的推送文件也是通不过的 Apns测试程序可以通过,此时证书是正确的,可以正常使用
+生成证书后 测试项目有两个 Apns测试程序跟send.php  send.php使用正确的推送文件也是通不过的 Apns测试程序可以通过,此时证书是正确的,可以正常使用.
+生成推送证书,官网下载文件 
+aps_development.cer 开发证书 aps.cer 发布证书
+![](./资源文件/关于推送/010.png)
+将证书安装到钥匙串,导出秘钥文件 
+aps_development.cer导出aps_dev.p12
+aps.cer导出aps_dis.p12
+![](./资源文件/关于推送/011.png)
+沙盒推送生成的文件名称:
+Sandbox-PushCert.pem
+Sandbox-PushKey-noenc.pem
+正式推送生成的文件名称:
+Production-PushCert.pem
+Production-PushKey-noenc.pem
+将.cer和.p12文件放在同一个目录下
+生成Sandbox-PushCert.pem和Sandbox-PushKey-noenc.pem的命令
+openssl x509 -in aps_development.cer -inform der -out Sandbox-PushCert.pem
+openssl pkcs12 -nocerts -in aps_dev.p12 -out Sandbox-PushKey.pem 
+openssl rsa -in Sandbox-PushKey.pem -out Sandbox-PushKey-noenc.pem
+本地生成php测试文件
+cat Sandbox-PushCert.pem Sandbox-PushKey.pem > dev_ck.pem
+cat Sandbox-PushCert.pem Sandbox-PushKey-noenc.pem > dev_noenc_ck.pem
+生成Production-PushCert.pem和Production-PushKey-noenc.pem的命令
+openssl x509 -in aps.cer -inform der -out Production-PushCert.pem
+openssl pkcs12 -nocerts -in aps_dis.p12 -out Production-PushKey.pem 
+openssl rsa -in Production-PushKey.pem -out Production-PushKey-noenc.pem
+本地生成php测试文件
+cat Production-PushCert.pem Production-PushKey.pem > dis_ck.pem
+cat Production-PushCert.pem Production-PushKey-noenc.pem > dis_noenc_ck.pem
+![](./资源文件/关于推送/012.png)
+![](./资源文件/关于推送/013.png)
+![](./资源文件/关于推送/014.png)
 
 ##关于内购
 debug环境中使用测试账号却未进入沙盒测试的解决
@@ -328,9 +360,9 @@ branches 合并
 比对工具:
 windos WinMerge
 1:将branches和trunk中的工程文件目录拖动到WinMerge  branches在左侧 trunk在右侧
-![](./资源文件/如何打tags/001.PNG)
+![](./资源文件/如何打tags/001.png)
 2:在筛选出的文件夹中选择自己要对比的文件目录
-![](./资源文件/如何打tags/002.PNG)
+![](./资源文件/如何打tags/002.png)
 3:合并文件
 Text files are different 文本文件是不同的
 Text files are identical 文本文件是相同的
