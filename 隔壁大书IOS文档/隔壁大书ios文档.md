@@ -11,7 +11,8 @@
 ```
 #####2:修改资源文件
 ```
-每本的资源文件在single_pack下对应名称目录
+每本的资源文件在single_pack下对应名称目录,单本为工程名+s2p
+如宫杀s2p
 icon<br>
 home_page@2x.jpg 390 × 524<br>
 load_page@2x.jpg 640 × 1136<br>
@@ -26,7 +27,11 @@ share_icon.png<br>
 single
 singlebook_书籍ID
 s2pstyle 样式文件夹全部删除后拷贝
+s2pstyle文件夹需要创建分支后添加
 ```
+添加s2pstyle文件夹,复制文件夹到项目的工程目录,在工程中添加
+![](./资源文件/关于打包流程/001.png)
+
 #####3:修改配置文件
 ```
 ./ServerConfig.h 修改成官网地址
@@ -37,11 +42,11 @@ s2pstyle 样式文件夹全部删除后拷贝
 ```
 targets/info/url types
 ```
-#####6:选择ipa配置文件
+#####5:修改ipa配置文件
 ```
-tab/rmbcharge_s2p.txt
+tab/rmbcharge_s2p_bookid.txt
 ```
-例
+内容 例
 
 ```
 {"name":"","activityId":0,"cost":[{"id":"com.locojoy.book8swpdS2PIAP1","name":"600馒头币","describe":"隔壁大书,600馒头币","money":600,"RMB":6,"reward":0},{"id":"com.locojoy.book8swpdS2PIAP2","name":"1200馒头币","describe":"隔壁大书,1200馒头币","money":1200,"RMB":12,"reward":0},{"id":"com.locojoy.book8swpdS2PIAP3","name":"3000馒头币","describe":"隔壁大书,3000馒头币","money":3000,"RMB":30,"reward":0},{"id":"com.locojoy.book8swpdS2PIAP4","name":"9800馒头币","describe":"隔壁大书,9800馒头币","money":9800,"RMB":98,"reward":0},{"id":"com.locojoy.book8swpdS2PIAP5","name":"61800馒头币","describe":"隔壁大书,61800馒头币","money":61800,"RMB":618,"reward":0},{"id":"com.locojoy.book8swpdS2PIAP6","name":"5000馒头币","describe":"隔壁大书,5000馒头币","money":5000,"RMB":50,"reward":0}]}
@@ -50,8 +55,17 @@ tab/rmbcharge_s2p.txt
 ```
 debug版本
 release版本
-Product-Archive
+Xcode->Product->Archive
 ```
+#####7:apns推送证书
+
+关于推送证书的制作流程参见<关于推送>
+制作好的证书会放在对应的目录 single_pack->应用名+S2P->aps
+包括:aps_development.cer,aps_dev.p12,aps.cer,aps_dis.p12,Sandbox-PushCert.pem,Sandbox-PushKey-noenc.pem,Production-PushCert.pem,Production-PushKey-noenc.pem
+其中 PushCert.pem,Sandbox-PushKey-noenc.pem,Production-PushCert.pem,Production-PushKey-noenc.pem 是生成成功后提供给服务器使用的
+
+![](./资源文件/关于打包流程/002.png)
+
 ###关于单本的打包流程</br>
 
 ##关于推送
@@ -277,30 +291,50 @@ aps_development.cer导出aps_dev.p12
 aps.cer导出aps_dis.p12
 ![](./资源文件/关于推送/011.png)
 沙盒推送生成的文件名称:
+
+```
 Sandbox-PushCert.pem
 Sandbox-PushKey-noenc.pem
+```
 正式推送生成的文件名称:
+
+```
 Production-PushCert.pem
 Production-PushKey-noenc.pem
+```
 将.cer和.p12文件放在同一个目录下
 生成Sandbox-PushCert.pem和Sandbox-PushKey-noenc.pem的命令
+
+```
 openssl x509 -in aps_development.cer -inform der -out Sandbox-PushCert.pem
 openssl pkcs12 -nocerts -in aps_dev.p12 -out Sandbox-PushKey.pem 
 openssl rsa -in Sandbox-PushKey.pem -out Sandbox-PushKey-noenc.pem
+```
 本地生成php测试文件
+
+```
 cat Sandbox-PushCert.pem Sandbox-PushKey.pem > dev_ck.pem
 cat Sandbox-PushCert.pem Sandbox-PushKey-noenc.pem > dev_noenc_ck.pem
+```
 生成Production-PushCert.pem和Production-PushKey-noenc.pem的命令
+
+```
 openssl x509 -in aps.cer -inform der -out Production-PushCert.pem
 openssl pkcs12 -nocerts -in aps_dis.p12 -out Production-PushKey.pem 
 openssl rsa -in Production-PushKey.pem -out Production-PushKey-noenc.pem
+```
 本地生成php测试文件
+
+```
 cat Production-PushCert.pem Production-PushKey.pem > dis_ck.pem
 cat Production-PushCert.pem Production-PushKey-noenc.pem > dis_noenc_ck.pem
+```
 ![](./资源文件/关于推送/012.png)
 ![](./资源文件/关于推送/013.png)
-![](./资源文件/关于推送/014.png)
-
+send_dev.php 开发证书测试 send_dis.php 发布证书测试,php文件和.pem文件放在同一目录
+![](./资源文件/关于推送/015.png)
+![](./资源文件/关于推送/016.png)
+![](./资源文件/关于推送/017.png)
 ##关于内购
 debug环境中使用测试账号却未进入沙盒测试的解决
 
@@ -320,14 +354,86 @@ com.locojoy.wanshuIAP6 50 5000馒头币 隔壁大书,5000馒头币
 ```
 单本转平台规则
 
+
+产品 ID (参考名称相同) | 价格 |  显示名称 | 描述 | 屏幕快照
+--------- | ------------- | --------- | -------------  | ------------- 
+Bundle ID+S2PIAP1 |  6  | 600馒头币  | 隔壁大书,600馒头币  | ![](./资源文件/关于IAP/IAP1.jpg)
+Bundle ID+S2PIAP2 | 12  | 1200馒头币  | 隔壁大书,1200馒头币  |  ![](./资源文件/关于IAP/IAP2.jpg)
+Bundle ID+S2PIAP3 |  30  | 3000馒头币  | 隔壁大书,3000馒头币  |  ![](./资源文件/关于IAP/IAP3.jpg)
+Bundle ID+S2PIAP4 |  98  | 9800馒头币  | 隔壁大书,9800馒头币  |  ![](./资源文件/关于IAP/IAP4.jpg)
+Bundle ID+S2PIAP5 | 618  | 61800馒头币  | 隔壁大书,61800馒头币  |  ![](./资源文件/关于IAP/IAP5.jpg)
+Bundle ID+S2PIAP6 |  50  | 5000馒头币  | 隔壁大书,5000馒头币  |  ![](./资源文件/关于IAP/IAP6.jpg)
+
+服务器验证IPA需要进行运控配置
+
+例:
+
 ```
-Bundle ID+S2PIAP1 6 600馒头币 隔壁大书,600馒头币 
-Bundle ID+S2PIAP2 12 1200馒头币 隔壁大书,1200馒头币 
-Bundle ID+S2PIAP3 30 3000馒头币 隔壁大书,3000馒头币 
-Bundle ID+S2PIAP4 98 9800馒头币 隔壁大书,9800馒头币 
-Bundle ID+S2PIAP5 618 61800馒头币 隔壁大书,61800馒头币 
-Bundle ID+S2PIAP6 50 5000馒头币 隔壁大书,5000馒头币 
+云控buy_money_RMB:
+      {
+            "id":"com.locojoy.book8swpdS2PIAP1",
+            "name":"6元礼包",
+            "describe":"6元=600馒头币",
+            "money":600,
+            "RMB":6,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        },
+        {
+            "id":"com.locojoy.book8swpdS2PIAP2",
+            "name":"12元礼包",
+            "describe":"12元=1200馒头币",
+            "money":1200,
+            "RMB":12,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        },
+        {
+            "id":"com.locojoy.book8swpdS2PIAP3",
+            "name":"30元礼包",
+            "describe":"30元=3000馒头币",
+            "money":3000,
+            "RMB":30,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        },
+        {
+            "id":"com.locojoy.book8swpdS2PIAP4",
+            "name":"50元礼包",
+            "describe":"50元=5000馒头币",
+            "money":5000,
+            "RMB":50,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        },
+        {
+            "id":"com.locojoy.book8swpdS2PIAP5",
+            "name":"98元礼包",
+            "describe":"98元=9800馒头币",
+            "money":9800,
+            "RMB":98,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        },
+        {
+            "id":"com.locojoy.book8swpdS2PIAP6",
+            "name":"618元礼包",
+            "describe":"618元=61800馒头币",
+            "money":61800,
+            "RMB":618,
+            "reward":0,
+            "pid":"h_apple_swpd"
+        }
 ```
+
+单本转平台增加IAP
+登录iTunes Connect 添加APP应用内购买项
+![](./资源文件/关于IAP/001.png)
+参考名称和产品 ID 按照规则添加一样的即可
+选择定价 添加显示名称和描述
+![](./资源文件/关于IAP/002.png)
+上传屏幕快照,存储,提审
+![](./资源文件/关于IAP/003.png)
 ##关于Identifiers 对应APP Name
 APP Name |  Bundle ID
 --------- | -------------
@@ -354,6 +460,20 @@ branches为阶段性release版本
 tags为阶段性发布版本
 trunk为日常开发版本
 ```
+###关于SVN多版本管理
+
+T1-2015->主工程目录
+trunk_AppName拼音首字母小写->纯单本
+trunk_AppName拼音首字母小写_s2p->单本转平台
+![](./资源文件/关于SVN/001.png)
+![](./资源文件/关于SVN/002.png)
+创建一个单本转平台分支目录只更新不上传
+![](./资源文件/关于SVN/003.png)
+![](./资源文件/关于SVN/004.png)
+![](./资源文件/关于SVN/005.png)
+![](./资源文件/关于SVN/006.png)
+![](./资源文件/关于SVN/007.png)
+
 ###如何打tags
 建议使用windos系统
 branches 合并
@@ -415,4 +535,18 @@ F5刷新时间
 7:最后一步发送邮件，将changelog中的内容以邮件的方式发送
 ![](./资源文件/如何打tags/024.PNG)
 
+##单本转平台对照表
+
+id |app name | 支付IPA | 推送 | 提交App Store
+--------- | --------- | --------- |------------- | ---------
+6 | 禁地逃生 | 已申请 | 已制作完成 | ×
+7 | 宫杀 | 已申请 | 已制作完成 | ×
+8 | 死亡派对 |  已通过 | 已提供服务器 | √
+9 | 末世求生手册 | 已申请 |已制作完成|×
+10 | 玄武纪 | 已填写 | 已制作完成 |×
+
+
+##关于路径
+证书路径 /Users/simon/Desktop/0 apple事宜/0 证书/private key
+IPA配图路径 /Users/simon/gitclone/-ios-/隔壁大书IOS文档/资源文件/关于IAP
 
