@@ -307,28 +307,62 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 <a href="#toc_7">4:修改微信ID</a>
 </li>
 <li>
-<a href="#toc_8">6:选择ipa配置文件</a>
+<a href="#toc_8">5:修改ipa配置文件</a>
 </li>
 <li>
 <a href="#toc_9">6:选择对应的证书</a>
 </li>
+<li>
+<a href="#toc_10">7:apns推送证书</a>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_10">关于单本的打包流程</br></a>
+<a href="#toc_11">关于单本的打包流程</br></a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_11">关于推送</a>
+<a href="#toc_12">关于推送</a>
+<ul>
+<li>
+<a href="#toc_13">push服务器部分php.rtfd 文档资料</a>
 </li>
 <li>
-<a href="#toc_12">关于内购</a>
+<a href="#toc_14">push证书部分的注意点 文档资料</a>
 </li>
 <li>
-<a href="#toc_13">关于Identifiers 对应APP Name</a>
+<a href="#toc_15">阅读推送文档理解与实际操作</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_16">关于内购</a>
+</li>
+<li>
+<a href="#toc_17">关于Identifiers 对应APP Name</a>
+</li>
+<li>
+<a href="#toc_18">关于版本管理</a>
+<ul>
+<li>
+<a href="#toc_19">关于SVN目录</a>
+</li>
+<li>
+<a href="#toc_20">关于SVN多版本管理</a>
+</li>
+<li>
+<a href="#toc_21">如何打tags</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_22">单本转平台对照表</a>
+</li>
+<li>
+<a href="#toc_23">关于路径</a>
 </li>
 </ul>
 </li>
@@ -350,7 +384,8 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 
 <h5 id="toc_5">2:修改资源文件</h5>
 
-<pre><code>每本的资源文件在single_pack下对应名称目录
+<pre><code>每本的资源文件在single_pack下对应名称目录,单本为工程名+s2p
+如宫杀s2p
 icon&lt;br&gt;
 home_page@2x.jpg 390 × 524&lt;br&gt;
 load_page@2x.jpg 640 × 1136&lt;br&gt;
@@ -364,8 +399,12 @@ s2p_start_nor@3x.png&lt;br&gt;
 share_icon.png&lt;br&gt;
 single
 singlebook_书籍ID
-style 样式文件夹全部删除后拷贝
+s2pstyle 样式文件夹全部删除后拷贝
+s2pstyle文件夹需要创建分支后添加
 </code></pre>
+
+<p><font color=#DC143C>添加s2pstyle文件夹,复制文件夹到项目的工程目录,在工程中添加</font><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/001.png" alt=""/></p>
 
 <h5 id="toc_6">3:修改配置文件</h5>
 
@@ -379,12 +418,12 @@ style 样式文件夹全部删除后拷贝
 <pre><code>targets/info/url types
 </code></pre>
 
-<h5 id="toc_8">6:选择ipa配置文件</h5>
+<h5 id="toc_8">5:修改ipa配置文件</h5>
 
-<pre><code>tab/rmbcharge_s2p.txt
+<pre><code>tab/rmbcharge_s2p_bookid.txt
 </code></pre>
 
-<p>例</p>
+<p>内容 例</p>
 
 <pre><code>{&quot;name&quot;:&quot;&quot;,&quot;activityId&quot;:0,&quot;cost&quot;:[{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP1&quot;,&quot;name&quot;:&quot;600馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,600馒头币&quot;,&quot;money&quot;:600,&quot;RMB&quot;:6,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP2&quot;,&quot;name&quot;:&quot;1200馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,1200馒头币&quot;,&quot;money&quot;:1200,&quot;RMB&quot;:12,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP3&quot;,&quot;name&quot;:&quot;3000馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,3000馒头币&quot;,&quot;money&quot;:3000,&quot;RMB&quot;:30,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP4&quot;,&quot;name&quot;:&quot;9800馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,9800馒头币&quot;,&quot;money&quot;:9800,&quot;RMB&quot;:98,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP5&quot;,&quot;name&quot;:&quot;61800馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,61800馒头币&quot;,&quot;money&quot;:61800,&quot;RMB&quot;:618,&quot;reward&quot;:0},{&quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP6&quot;,&quot;name&quot;:&quot;5000馒头币&quot;,&quot;describe&quot;:&quot;隔壁大书,5000馒头币&quot;,&quot;money&quot;:5000,&quot;RMB&quot;:50,&quot;reward&quot;:0}]}
 </code></pre>
@@ -393,40 +432,407 @@ style 样式文件夹全部删除后拷贝
 
 <pre><code>debug版本
 release版本
-Product-Archive
+Xcode-&gt;Product-&gt;Archive
 </code></pre>
 
-<h3 id="toc_10">关于单本的打包流程</br></h3>
+<h5 id="toc_10">7:apns推送证书</h5>
 
-<h2 id="toc_11">关于推送</h2>
+<p>关于推送证书的制作流程参见&lt;关于推送&gt;<br/>
+制作好的证书会放在对应的目录 single_pack-&gt;应用名+S2P-&gt;aps<br/>
+包括:aps_development.cer,aps_dev.p12,aps.cer,aps_dis.p12,Sandbox-PushCert.pem,Sandbox-PushKey-noenc.pem,Production-PushCert.pem,Production-PushKey-noenc.pem<br/>
+其中 PushCert.pem,Sandbox-PushKey-noenc.pem,Production-PushCert.pem,Production-PushKey-noenc.pem 是生成成功后提供给服务器使用的</p>
 
-<h2 id="toc_12">关于内购</h2>
+<p><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/002.png" alt=""/></p>
 
-<p>debug环境中使用测试账号却未进入沙盒测试的解决<br/>
-<code><br/>
-删除TARGETS-Build Settings-Code Signing Entitlements<br/>
-</code><br/>
-内购IAP规则<br/>
-隔壁大书平台<br/>
-<code><br/>
-com.locojoy.wanshuIAP1 6 600馒头币 隔壁大书,600馒头币 <br/>
-com.locojoy.wanshuIAP2 12 1200馒头币 隔壁大书,1200馒头币 <br/>
-com.locojoy.wanshuIAP3 30 3000馒头币 隔壁大书,3000馒头币 <br/>
-com.locojoy.wanshuIAP4 98 9800馒头币 隔壁大书,9800馒头币 <br/>
-com.locojoy.wanshuIAP5 618 61800馒头币 隔壁大书,61800馒头币 <br/>
-com.locojoy.wanshuIAP6 50 5000馒头币 隔壁大书,5000馒头币 <br/>
-</code><br/>
-单本转平台规则<br/>
-<code><br/>
-Bundle ID+S2PIAP1 6 600馒头币 隔壁大书,600馒头币 <br/>
-Bundle ID+S2PIAP2 12 1200馒头币 隔壁大书,1200馒头币 <br/>
-Bundle ID+S2PIAP3 30 3000馒头币 隔壁大书,3000馒头币 <br/>
-Bundle ID+S2PIAP4 98 9800馒头币 隔壁大书,9800馒头币 <br/>
-Bundle ID+S2PIAP5 618 61800馒头币 隔壁大书,61800馒头币 <br/>
-Bundle ID+S2PIAP6 50 5000馒头币 隔壁大书,5000馒头币 <br/>
-</code></p>
+<h3 id="toc_11">关于单本的打包流程</br></h3>
 
-<h2 id="toc_13">关于Identifiers 对应APP Name</h2>
+<h2 id="toc_12">关于推送</h2>
+
+<h3 id="toc_13">push服务器部分php.rtfd 文档资料</h3>
+
+<p>首先：</p>
+
+<p>为了测试苹果服务器是否通了，执行命令</p>
+
+<pre><code>telnet gateway.sandbox.push.apple.com 2195
+</code></pre>
+
+<p>它将尝试发送一个规则的，不加密的连接到APNS服务。如果你看到上面的反馈，那说明你的MAC能够到达APNS。按下Ctrl+C关闭连接。如果得到一个错误信息，那么你需要确保你的防火墙允许2195端口。一般这里都不会出现什么问题。</p>
+
+<p>其次：</p>
+
+<p>php的调用<br/>
+<font color=Crimson><br/>
+注意，要把pem文件和send.php文件放到一个文件夹下，否则会不成功。<br/>
+会得到错误消息<br/>
+unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Unknown error) in /Users/simon/Desktop/0 apple事宜/1 push/send.php on line 5</p>
+
+<p>注意苹果推送服务器地址，如果是development的话用ssl://gateway.sandbox.push.apple.com:2195,如果是Distribution的话用ssl://gateway.push.apple.com:2195<br/>
+</font></p>
+
+<ol>
+<li><p>可以用下面的命令行方式, <br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/001.png" alt=""/></p></li>
+<li><p>也可以放到apache下面,用browser访问.</p></li>
+</ol>
+
+<p>apache的网页文档放置路径: /Library/WebServer/Documents</p>
+
+<p>apache配置文件路径: /etc/apache2/httpd.conf</p>
+
+<p>apache的启动<br/>
+1.打开“终端(terminal)”，输入 sudo apachectl -v，（可能需要输入机器秘密）。如下显示Apache的版本<br/>
+2.接着输入 sudo apachectl start，这样Apache就启动了。<br/>
+3.打开Safari浏览器地址栏输入 “http://localhost”，可以看到内容为“It works!”的页面。<br/>
+其位于“/Library（资源库）/WebServer/Documents/”下，这就是Apache的默认根目录。<br/>
+4.apache的配置文件在/etc/apache2/httpd.conf下面</p>
+
+<h3 id="toc_14">push证书部分的注意点 文档资料</h3>
+
+<p>1.服务器端需要两个文件, send.php用来接收token信息和与APNS通讯,<br/>
+ck.pem是一个证书,用来做服务器和客户端安全验证的. 主要靠cert.pem来保证ssl连接。</p>
+
+<p>2.客户端development和Distribution用的provisioning profile不一样(xcode中选择),<br/>
+还有服务器上开发和分发用到的ck.pem也是不一样的,要分别制作.</p>
+
+<p>3.制作ck.pem是关键,很多问题都是这个证书制作不对导致.<br/>
+(1)产生CertificateSigningRequest.certSigningRequest<br/>
+(2)生成一个不带*的app id, 在portal左边的App IDs里面配置这个app id, 并且下载&quot;aps_developer_identity.cer&quot;证书<br/>
+注意: 下面用到的certificates.p12文件是在这里下载的而不是在portal的Certificates里面下载的,要仔细看教程<br/>
+点击某个app id，然后再edit里面配置push notifications，如下图<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/002.png" alt=""/><br/>
+得到的证书叫aps_developer_identity.cer/aps_production_identity.cer<br/>
+(仔细对比一下,如果是在portal的certificates里面下载的,是developer_identity.cer)</p>
+
+<p>(3)双击以后导入到keychain里面的是这样的,<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/003.png" alt=""/></p>
+
+<p>注意：push用到的文件是上面的而不是下面那个<br/>
+注意：push用到的证书和普通开发用的证书是不一样的，制作的时候就不一样，要选择<br/>
+这个证书全名叫Apple Push Notification service SSL Certificate<br/>
+前缀是aps，后缀是cer</p>
+
+<p>一个问题：<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/004.png" alt=""/><br/>
+这个证书没有private key？是因为这个certificate不是由这台电脑的某个登陆用户下的CSR文件生成的！！！！！！<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/005.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/006.png" alt=""/><br/>
+看，上面和下面的simon wang是对应的，这就对了</p>
+
+<p>(4)关键文件就是&quot;aps_developer_identity.cer&quot;,<br/>
+有的文章说只需要这一个文件, 有的需要导入keychain后从里面再导出来的两个文件(cert.p12 and key.p12)<br/>
+下一步就是制作最终文件了,php需要一个ck.pem文件,.net需要一个做出来的p12文件.</p>
+
+<p>1、把.cer的SSL证书转换为.pem文件，执行命令：</p>
+
+<pre><code>openssl x509 -in aps_development.cer -inform der -out PushCert.pem
+</code></pre>
+
+<p>在桌面上会生成一个PushCert.pem文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/007.tiff" alt=""/></p>
+
+<p>2、把私钥Push.p12文件转化为.pem文件：</p>
+
+<pre><code>openssl pkcs12 -nocerts -out PushKey.pem -in Push.p12
+</code></pre>
+
+<p><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/008.tiff" alt=""/> <br/>
+这里需要我们输入密码，这个密码也就是我们导出p12文件时的密码。<br/>
+然后，需要我们对生成的pem文件设置一个密语，这里的密语是要告诉我们服务器的。这样，桌面上又会生成一个PushKey.pem文件<br/>
+(实际上第一个import password也就是导出密码可以是空，<br/>
+第二个PEM pass phrase必须填一个，默认填abcd吧, 提示说needs to be at least 4 chars，而且这个密码也可以去掉 --&gt;<br/>
+用openssl rsa -in PushKey_dis.pem -out PushKey_dis.pem-noenc.pem）</p>
+
+<p>（下面这一步可以不做，看服务器哥们的需求，是要两个pem文件还是一个ck.pem文件）<br/>
+3、对生成的这两个pem文件再生成一个pem文件，来把证书和私钥整合到一个文件里：</p>
+
+<pre><code>cat PushCert.pem PushKey.pem &gt; ck.pem
+</code></pre>
+
+<p>生成ck.pem文件</p>
+
+<p> <img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/009.tiff" alt=""/> </p>
+
+<p>////////dev证书步骤////////</p>
+
+<pre><code>openssl x509 -in aps_development.cer -inform der -out PushCert.pem
+openssl pkcs12 -nocerts -in Push_dev.p12  -out PushKey.pem
+</code></pre>
+
+<p>如果你想要移除密码，要么在导出/转换时不要设定或者执行：</p>
+
+<pre><code>openssl rsa -in PushKey.pem -out PushKey-noenc.pem
+cat PushCert.pem PushKey.pem &gt; ck.pem
+</code></pre>
+
+<p>////////dis证书步骤////////</p>
+
+<pre><code>production/distribution证书和development证书不一样，制作app store的文件的过程如下：
+openssl x509 -in aps_production.cer -inform der -out PushCert_dis.pem
+openssl pkcs12 -nocerts -in Push_dis.p12 -out PushKey_dis.pem
+openssl rsa -in PushKey_dis.pem -out PushKey_dis-noenc.pem
+cat PushCert_dis.pem PushKey_dis.pem &gt; ck_dis.pem
+</code></pre>
+
+<p>////////inhouse证书步骤////////</p>
+
+<pre><code>openssl x509 -in aps_production.cer -inform der -out PushCert_dis.pem
+openssl pkcs12 -nocerts -in Certificates_inhouse_dis.p12 -out PushKey_dis.pem
+openssl rsa -in PushKey_dis.pem -out PushKey_dis-noenc.pem
+cat PushCert_dis.pem PushKey_dis.pem &gt; ck_dis.pem
+</code></pre>
+
+<p>这样，我们的文件就制作完了。下面进入测试阶段<br/>
+为了测试证书是否工作，执行下面的命令：</p>
+
+<pre><code>telnet gateway.sandbox.push.apple.com 2195
+</code></pre>
+
+<p>服务器部分<br/>
+send.php文件:如果是development的话用ssl://gateway.sandbox.push.apple.com:2195,如果是Distribution的话用ssl://gateway.push.apple.com:2195</p>
+
+<p>CertificateSigningRequest.certSigningRequest 是请求文件<br/>
+ios_development.cer是上面的文件放到开发者中心后生成的授权证书 (certificate)</p>
+
+<p>Generate your certificate.</p>
+
+<p>With the creation of your CSR, Keychain Access simultaneously generated a public and private key pair. Your private key is stored on your Mac in the login Keychain by default and can be viewed in the Keychain Access application under the &quot;Keys&quot; category. Your requested certificate will be the public half of your key pair.</p>
+
+<p>Certificates.p12是personal information exchange 文件, 是在keychain里面导出来的，导那个证书样式的文件和里面的钥匙样式的文件都一样，应该是私钥文件.</p>
+
+<p>从制作命令来看，push和.cer和.p12文件有关系，和provisioning profile无关<br/>
+cer和p12究竟是神马关系<br/>
+还有，token和什么有关，和下面三个元素：appid，device，证书</p>
+
+<p>各种数字证书的区别<br/>
+cer后缀的证书文件有两张编码：der</p>
+
+<p>.cer/.crt证书文件是二进制形式存放的，不含密钥。</p>
+
+<p>过程是这样的：</p>
+
+<p>1.（本地）先在本地生成一个签名(CertificateSigningRequest.certSigningRequest)， 上传 <br/>
+2.（苹果后台）然后下载生成的push notification（推送通知）许可证， 是cer后缀的<br/>
+3.（本地导入）双击cer文件导入到keychain里面<br/>
+4.（本地导出）点击此certificate的右键，导出一个p12文件，命名apns-dev-cert.p12<br/>
+                        点击展开的private key，同样导出一个p12文件，命名apns-dev-key.p12<br/>
+5.（做服务器需要的文件）<br/>
+                        通过终端命令将p12文件转化为pem文件<br/>
+                        在key文件从p12-&gt;pen的转化过程中需要设置一个密码，如果服务器不需要可以去掉<br/>
+                        还可以将两个文件合成一个文件ck.pem<br/>
+      发给服务器的哥们，供使用！！！ 服务器的哥们有的需要两个文件cert.pem, key.pem, 有的需要一个文件ck.pem</p>
+
+<p>服务器有了这两个许可证就可以把消息发给APNS了（这两个许可证归根到底是从苹果后台来的）</p>
+
+<p>p12文件和pem文件的区别</p>
+
+<p>还有：推送的开发证书有效期是4个月，发布证书是1年</p>
+
+<h3 id="toc_15">阅读推送文档理解与实际操作</h3>
+
+<p>阅读push服务器部分php和push证书部分的注意点之后也会遇到问题<br/>
+生成证书后 测试项目有两个 Apns测试程序跟send.php  send.php使用正确的推送文件也是通不过的 Apns测试程序可以通过,此时证书是正确的,可以正常使用.<br/>
+生成推送证书,官网下载文件 <br/>
+aps_development.cer 开发证书 aps.cer 发布证书<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/010.png" alt=""/><br/>
+将证书安装到钥匙串,导出秘钥文件 <br/>
+aps_development.cer导出aps_dev.p12<br/>
+aps.cer导出aps_dis.p12<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/011.png" alt=""/><br/>
+沙盒推送生成的文件名称:</p>
+
+<pre><code>Sandbox-PushCert.pem
+Sandbox-PushKey-noenc.pem
+</code></pre>
+
+<p>正式推送生成的文件名称:</p>
+
+<pre><code>Production-PushCert.pem
+Production-PushKey-noenc.pem
+</code></pre>
+
+<p>将.cer和.p12文件放在同一个目录下<br/>
+生成Sandbox-PushCert.pem和Sandbox-PushKey-noenc.pem的命令</p>
+
+<pre><code>openssl x509 -in aps_development.cer -inform der -out Sandbox-PushCert.pem
+openssl pkcs12 -nocerts -in aps_dev.p12 -out Sandbox-PushKey.pem 
+openssl rsa -in Sandbox-PushKey.pem -out Sandbox-PushKey-noenc.pem
+</code></pre>
+
+<p>本地生成php测试文件</p>
+
+<pre><code>cat Sandbox-PushCert.pem Sandbox-PushKey.pem &gt; dev_ck.pem
+cat Sandbox-PushCert.pem Sandbox-PushKey-noenc.pem &gt; dev_noenc_ck.pem
+</code></pre>
+
+<p>生成Production-PushCert.pem和Production-PushKey-noenc.pem的命令</p>
+
+<pre><code>openssl x509 -in aps.cer -inform der -out Production-PushCert.pem
+openssl pkcs12 -nocerts -in aps_dis.p12 -out Production-PushKey.pem 
+openssl rsa -in Production-PushKey.pem -out Production-PushKey-noenc.pem
+</code></pre>
+
+<p>本地生成php测试文件</p>
+
+<pre><code>cat Production-PushCert.pem Production-PushKey.pem &gt; dis_ck.pem
+cat Production-PushCert.pem Production-PushKey-noenc.pem &gt; dis_noenc_ck.pem
+</code></pre>
+
+<p><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/012.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/013.png" alt=""/><br/>
+send_dev.php 开发证书测试 send_dis.php 发布证书测试,php文件和.pem文件放在同一目录<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/015.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/016.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8E%E6%8E%A8%E9%80%81/017.png" alt=""/></p>
+
+<h2 id="toc_16">关于内购</h2>
+
+<p>debug环境中使用测试账号却未进入沙盒测试的解决</p>
+
+<pre><code>删除TARGETS-Build Settings-Code Signing Entitlements
+</code></pre>
+
+<p>内购IAP规则<br/>
+隔壁大书平台</p>
+
+<pre><code>com.locojoy.wanshuIAP1 6 600馒头币 隔壁大书,600馒头币 
+com.locojoy.wanshuIAP2 12 1200馒头币 隔壁大书,1200馒头币 
+com.locojoy.wanshuIAP3 30 3000馒头币 隔壁大书,3000馒头币 
+com.locojoy.wanshuIAP4 98 9800馒头币 隔壁大书,9800馒头币 
+com.locojoy.wanshuIAP5 618 61800馒头币 隔壁大书,61800馒头币 
+com.locojoy.wanshuIAP6 50 5000馒头币 隔壁大书,5000馒头币 
+</code></pre>
+
+<p>单本转平台规则</p>
+
+<table>
+<thead>
+<tr>
+<th>产品 ID (参考名称相同)</th>
+<th>价格</th>
+<th>显示名称</th>
+<th>描述</th>
+<th>屏幕快照</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Bundle ID+S2PIAP1</td>
+<td>6</td>
+<td>600馒头币</td>
+<td>隔壁大书,600馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP1.jpg" alt=""/></td>
+</tr>
+<tr>
+<td>Bundle ID+S2PIAP2</td>
+<td>12</td>
+<td>1200馒头币</td>
+<td>隔壁大书,1200馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP2.jpg" alt=""/></td>
+</tr>
+<tr>
+<td>Bundle ID+S2PIAP3</td>
+<td>30</td>
+<td>3000馒头币</td>
+<td>隔壁大书,3000馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP3.jpg" alt=""/></td>
+</tr>
+<tr>
+<td>Bundle ID+S2PIAP4</td>
+<td>98</td>
+<td>9800馒头币</td>
+<td>隔壁大书,9800馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP4.jpg" alt=""/></td>
+</tr>
+<tr>
+<td>Bundle ID+S2PIAP5</td>
+<td>618</td>
+<td>61800馒头币</td>
+<td>隔壁大书,61800馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP5.jpg" alt=""/></td>
+</tr>
+<tr>
+<td>Bundle ID+S2PIAP6</td>
+<td>50</td>
+<td>5000馒头币</td>
+<td>隔壁大书,5000馒头币</td>
+<td><img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/IAP6.jpg" alt=""/></td>
+</tr>
+</tbody>
+</table>
+
+<p>服务器验证IPA需要进行运控配置</p>
+
+<p>例:</p>
+
+<pre><code>云控buy_money_RMB:
+      {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP1&quot;,
+            &quot;name&quot;:&quot;6元礼包&quot;,
+            &quot;describe&quot;:&quot;6元=600馒头币&quot;,
+            &quot;money&quot;:600,
+            &quot;RMB&quot;:6,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        },
+        {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP2&quot;,
+            &quot;name&quot;:&quot;12元礼包&quot;,
+            &quot;describe&quot;:&quot;12元=1200馒头币&quot;,
+            &quot;money&quot;:1200,
+            &quot;RMB&quot;:12,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        },
+        {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP3&quot;,
+            &quot;name&quot;:&quot;30元礼包&quot;,
+            &quot;describe&quot;:&quot;30元=3000馒头币&quot;,
+            &quot;money&quot;:3000,
+            &quot;RMB&quot;:30,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        },
+        {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP4&quot;,
+            &quot;name&quot;:&quot;50元礼包&quot;,
+            &quot;describe&quot;:&quot;50元=5000馒头币&quot;,
+            &quot;money&quot;:5000,
+            &quot;RMB&quot;:50,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        },
+        {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP5&quot;,
+            &quot;name&quot;:&quot;98元礼包&quot;,
+            &quot;describe&quot;:&quot;98元=9800馒头币&quot;,
+            &quot;money&quot;:9800,
+            &quot;RMB&quot;:98,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        },
+        {
+            &quot;id&quot;:&quot;com.locojoy.book8swpdS2PIAP6&quot;,
+            &quot;name&quot;:&quot;618元礼包&quot;,
+            &quot;describe&quot;:&quot;618元=61800馒头币&quot;,
+            &quot;money&quot;:61800,
+            &quot;RMB&quot;:618,
+            &quot;reward&quot;:0,
+            &quot;pid&quot;:&quot;h_apple_swpd&quot;
+        }
+</code></pre>
+
+<p>单本转平台增加IAP<br/>
+登录iTunes Connect 添加APP应用内购买项<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/001.png" alt=""/><br/>
+参考名称和产品 ID 按照规则添加一样的即可<br/>
+选择定价 添加显示名称和描述<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/002.png" alt=""/><br/>
+上传屏幕快照,存储,提审<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8EIAP/003.png" alt=""/></p>
+
+<h2 id="toc_17">关于Identifiers 对应APP Name</h2>
 
 <table>
 <thead>
@@ -499,6 +905,149 @@ Bundle ID+S2PIAP6 50 5000馒头币 隔壁大书,5000馒头币 <br/>
 </tr>
 </tbody>
 </table>
+
+<h2 id="toc_18">关于版本管理</h2>
+
+<h3 id="toc_19">关于SVN目录</h3>
+
+<pre><code>ios下目录分别为branches,tags,trunk.
+branches为阶段性release版本
+tags为阶段性发布版本
+trunk为日常开发版本
+</code></pre>
+
+<h3 id="toc_20">关于SVN多版本管理</h3>
+
+<p>T1-2015-&gt;主工程目录<br/>
+trunk_AppName拼音首字母小写-&gt;纯单本<br/>
+trunk_AppName拼音首字母小写_s2p-&gt;单本转平台<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/001.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/002.png" alt=""/><br/>
+创建一个单本转平台分支目录只更新不上传<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/003.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/004.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/005.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/006.png" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%85%B3%E4%BA%8ESVN/007.png" alt=""/></p>
+
+<h3 id="toc_21">如何打tags</h3>
+
+<p>建议使用windos系统<br/>
+branches 合并<br/>
+比对工具:<br/>
+windos WinMerge<br/>
+1:将branches和trunk中的工程文件目录拖动到WinMerge  branches在左侧 trunk在右侧<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/001.png" alt=""/><br/>
+2:在筛选出的文件夹中选择自己要对比的文件目录<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/002.png" alt=""/><br/>
+3:合并文件<br/>
+Text files are different 文本文件是不同的<br/>
+Text files are identical 文本文件是相同的<br/>
+双击有不同的文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/003.PNG" alt=""/><br/>
+Ctrl+F4 关闭当前比对文件<br/>
+Alt+↑ Alt+↓ 切换到上一个或者下一个不同<br/>
+Alt+←Alt+→复制到左侧 复制到右侧<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/004.PNG" alt=""/><br/>
+合并完成后修改的文件会出现一个.bak的副本文件，这个文件在上传SVN之前是需要删除的<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/005.jpg" alt=""/><br/>
+遇到新建的文件，Alt+← 复制文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/006.jpg" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/007.PNG" alt=""/><br/>
+图片的更新也是Alt+← 复制文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/008.jpg" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/009.jpg" alt=""/><br/>
+删除.bak文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/010.jpg" alt=""/><br/>
+4:提交比对后修改的文件<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/011.jpg" alt=""/><br/>
+tags的创建<br/>
+1: 选择刚刚合并好的branches 文件，Repo-browser 浏览SVN<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/012.PNG" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/013.PNG" alt=""/><br/>
+2:copy to 分支<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/014.PNG" alt=""/><br/>
+路径为tags,工程名为最新的tags名称(项目名+版本号_时间年月日20100101)<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/015.PNG" alt=""/><br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/016.PNG" alt=""/><br/>
+3:创建changelog.txt 可以用上次文件的备份修改<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/017.PNG" alt=""/><br/>
+F5刷新时间<br/>
+修改描述文件中的版本信息<br/>
+查看SVN最后一次的版本<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/018.PNG" alt=""/><br/>
+4:选择最新的tags版本与上一次的tags进行比较<br/>
+右键最新一次的tags，选择mark for comparison<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/019.PNG" alt=""/><br/>
+右键上一版本的tags,选择Compare URLs(content only)<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/020.PNG" alt=""/><br/>
+比较结果<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/021.PNG" alt=""/><br/>
+复制比较结果<br/>
+更新changelog.txt的svn比较内容<br/>
+5:更新最新的tags到本地<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/022.PNG" alt=""/><br/>
+6:将修改为最新内容的changelog.txt文件添加到刚刚更新的tags中上传<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/023.PNG" alt=""/><br/>
+7:最后一步发送邮件，将changelog中的内容以邮件的方式发送<br/>
+<img src="./%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/%E5%A6%82%E4%BD%95%E6%89%93tags/024.PNG" alt=""/></p>
+
+<h2 id="toc_22">单本转平台对照表</h2>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>app name</th>
+<th>支付IPA</th>
+<th>推送</th>
+<th>提交App Store</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>6</td>
+<td>禁地逃生</td>
+<td>已申请</td>
+<td>已制作完成</td>
+<td>×</td>
+</tr>
+<tr>
+<td>7</td>
+<td>宫杀</td>
+<td>已申请</td>
+<td>已制作完成</td>
+<td>×</td>
+</tr>
+<tr>
+<td>8</td>
+<td>死亡派对</td>
+<td>已通过</td>
+<td>已提供服务器</td>
+<td>√</td>
+</tr>
+<tr>
+<td>9</td>
+<td>末世求生手册</td>
+<td>已申请</td>
+<td>已制作完成</td>
+<td>×</td>
+</tr>
+<tr>
+<td>10</td>
+<td>玄武纪</td>
+<td>已填写</td>
+<td>已制作完成</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_23">关于路径</h2>
+
+<p>证书路径 /Users/simon/Desktop/0 apple事宜/0 证书/private key<br/>
+IPA配图路径 /Users/simon/gitclone/-ios-/隔壁大书IOS文档/资源文件/关于IAP</p>
 
 </div></body>
 
